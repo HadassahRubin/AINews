@@ -16,7 +16,7 @@ const App = () => {
         setLoading(true);
         setSummary('');
         try {
-            const { data } = await axios.post('/api/news/generate', { newsUrl });
+            const { data } = await axios.post('/api/news/generate', { newsUrl } );
             setSummary(data.summary);
         } catch (err) {
             setError('Something went wrong while generating the summary.');

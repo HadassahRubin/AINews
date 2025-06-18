@@ -3,9 +3,10 @@ using Microsoft.AspNetCore.Server.Kestrel.Core.Internal.Http;
 
 namespace AINews.Web.Services
 {
-    public class NewsScraperServices
+    public class ArticleScraper
     {
-        public string ArticleScraper(string newsUrl)
+
+        public string Scraper(string newsUrl)
         {
             var html = GetNewsHtml(newsUrl);
             var parser = new HtmlParser();
@@ -45,6 +46,5 @@ namespace AINews.Web.Services
             using var client = new HttpClient();
             return client.GetStringAsync($"{newsUrl}").Result;
         }
-
     }
 }

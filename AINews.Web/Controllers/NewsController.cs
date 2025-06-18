@@ -12,14 +12,13 @@ namespace AINews.Web.Controllers
         [JsonPropertyName("response")]
         public string Response { get; set; }
     }
-    public class SummaryRequest
-    {
-        public string Url { get; set; }
-    }
-
     public class SummaryResponse
     {
         public string Summary { get; set; }
+    }
+    public class SummaryRequest
+    {
+        public string NewsUrl { get; set; }
     }
     [Route("api/[controller]")]
     [ApiController]
@@ -28,10 +27,10 @@ namespace AINews.Web.Controllers
         [HttpPost("generate")]
         public SummaryResponse Generate(SummaryRequest request)
         {
-            var scraperService = new NewsScraperServices();
 
-            string text = scraperService.ArticleScraper(request.Url);
-            var prompt = $"You are a freindly news reporter ,who is giving a short summery of {request.Url} .You just want to give over the main idea of the article as your audience doesnt have a lot of time .";
+            var scraperService = new ArticleScraper();
+            string text = scraperService.Scraper(request.NewsUrl);
+            var prompt = $"You are a friendly news reporter ,who is giving a short summery of {request.NewsUrl} .You just want to give over the main idea of the article as your audience doesnt have a lot of time .";
 
             var ollamaRequest = new
             {
