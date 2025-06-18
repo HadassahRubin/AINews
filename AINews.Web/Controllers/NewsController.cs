@@ -28,8 +28,6 @@ namespace AINews.Web.Controllers
         public SummaryResponse Generate(SummaryRequest request)
         {
 
-            var scraperService = new ArticleScraper();
-            string text = scraperService.Scraper(request.NewsUrl);
             var prompt = $"You are a friendly news reporter ,who is giving a short summery of {request.NewsUrl} .You just want to give over the main idea of the article as your audience doesnt have a lot of time .";
 
             var ollamaRequest = new
